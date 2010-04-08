@@ -51,7 +51,7 @@
 
                  <tal:block tal:condition="python:not voted and not anonymous">
                      <p class="portalMessage">To vote for an article just click at the
-                         [X] link on its right side.</p>
+                         [X] link on it's right side.</p>
                  
                  </tal:block>
 

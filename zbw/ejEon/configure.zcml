@@ -1,0 +1,51 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:browser="http://namespaces.zope.org/browser" >
+
+    <!--
+    <five:registerPackage package="." initialize=".initialize" />
+    -->
+    
+    <five:implements class="Products.eJournal.content.JournalPaper.JournalPaper"
+        interface=".interfaces.IPrizable" />
+    
+    <five:implements class="Products.ejMember.content.ejMember.ejMember"
+        interface=".interfaces.IPrizable" />
+    
+    <!--
+    <five:implements class="Products.ejMember.content.ejMember.ejMember"
+        interface=".interfaces.IVote" />
+    -->
+
+    <adapter
+        for="Products.eJournal.interfaces.IJournalPaper"
+        provides=".interfaces.IVote"
+        factory=".adapters.Vote" />
+    
+
+    <browser:page
+        name="voteEON"
+        for="Products.eJournal.interfaces.IJournalPaper"
+        class=".browser.PrizeEon"
+        attribute="voteEON"
+        permission = "zope2.Public" />
+        
+        
+    <browser:page
+        name="eon-prize-2010"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        template="browser/prize_eon.pt"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="EonView"
+        for="*"
+        class=".browser.PrizeEon"
+        allowed_interface = ".browser.IPrizeEon"
+  	    permission = "zope2.Public" />
+
+    
+
+</configure>

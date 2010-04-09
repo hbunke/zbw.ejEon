@@ -161,9 +161,15 @@
             </tal:block>
             
             <tal:block
+                tal:define="url paper/absolute_url"
                 tal:condition="python:checkPermission('Manage portal', context)"
                 >
-                <br />(<span tal:content="python:eonview.countVotes(paper)">0</span>)
+                <br />
+                <a  tal:omit-tag="python:eonview.countVotes < 1"
+                    tal:attributes="href string:$url/@@eonvoters;
+                    title paper/@@eonvoters">
+                (<span
+                    tal:content="python:eonview.countVotes(paper)">0</span>)</a>
             </tal:block>
 
         </td>

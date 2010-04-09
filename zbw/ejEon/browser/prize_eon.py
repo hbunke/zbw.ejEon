@@ -37,6 +37,10 @@ class IPrizeEon(Interface):
         """returns a string for <a title=...
         """
 
+    def eonvoters():
+        """lists voters for article
+        """
+
 
 class PrizeEon(BrowserView):
     """
@@ -120,6 +124,23 @@ class PrizeEon(BrowserView):
                 paper.getId())
         return s
 
+    def eonvoters(self):
+        """
+        """
+        text = ""
+        ann = IAnnotations(self.context)
+        if ann.has_key('zbw.eonprize'):
+            text += "Nominated by: \n\n"
+            voters = ann['zbw.eonprize']
+            catalog = getToolByName(self.context, 'portal_catalog')
+            for voter in voters:
+                brains = catalog(portal_type="eJMember", id=voter)
+                for brain in brains:
+                    text += " - %s\n" %brain.getFullname
 
+        return text
+
+
+           
 
  

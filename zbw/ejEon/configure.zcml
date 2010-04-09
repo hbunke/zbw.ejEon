@@ -44,8 +44,14 @@
         for="*"
         class=".browser.PrizeEon"
         allowed_interface = ".browser.IPrizeEon"
-  	    permission = "zope2.Public" />
+        permission = "zope2.Public" />
 
-    
+    <browser:page
+        name="eonvoters"
+        for="Products.eJournal.interfaces.IJournalPaper"
+        class=".browser.PrizeEon"
+        attribute="eonvoters"
+        permission="cmf.ManagePortal" />
+
 
 </configure>

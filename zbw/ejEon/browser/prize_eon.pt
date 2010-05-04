@@ -28,6 +28,8 @@
                     voted eonview/hasVotedEON
                     ">
                     
+                    <tal:comment replace="nothing">
+                    <!-- OFF
                     <tal:block tal:condition="anonymous">
                     
                         <form tal:define="pss modules/Products/PythonScripts/standard"
@@ -42,18 +44,23 @@
                         </form>
                     
                     </tal:block>
-
+                    -->
+                </tal:comment>
 
                      <tal:block tal:condition="eonview/hasVotedEON">
                          <p class="portalMessage">You have already voted. The article you have voted
                          for is marked.</p>
                  </tal:block>
-
-                 <tal:block tal:condition="python:not voted and not anonymous">
+                
+                 <tal:comment replace="nothing">
+                     <!-- off
+                     <tal:block tal:condition="python:not voted and not anonymous">
                      <p class="portalMessage">To vote for an article just click at the
                          [X] link on it's right side.</p>
                  
                  </tal:block>
+                    -->
+                </tal:comment>
 
         
         <table class="eJournal_paper_list"
@@ -82,12 +89,6 @@
     
     <tal:block tal:repeat="paper batch"> 
 
-
-    <tal:comment replace="nothing">  
-        <!-- Aenderung HB 2007-10-31: test auf review_state, hier nur noch der
-            Vollstaendigkeit halber drin, falls Hintergrundformatierung geändert
-            wird oder aehnliches (class = "state") -->
-    </tal:comment>
 
     
      <tr
@@ -146,7 +147,10 @@
         </div>
         
         </td>
-        
+
+
+        <tal:comment replace="nothing">
+        <!-- OFF
         <td>
             <tal:block
                 tal:define="url paper/absolute_url"
@@ -173,6 +177,8 @@
             </tal:block>
 
         </td>
+        -->
+        </tal:comment>
 
     </tr>
     </tal:block>

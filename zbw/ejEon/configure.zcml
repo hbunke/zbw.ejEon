@@ -24,12 +24,14 @@
         factory=".adapters.Vote" />
     
 
+    <!-- OFF
     <browser:page
         name="voteEON"
         for="Products.eJournal.interfaces.IJournalPaper"
         class=".browser.PrizeEon"
         attribute="voteEON"
         permission = "zope2.Public" />
+    -->
         
         
     <browser:page
@@ -39,19 +41,23 @@
         permission="zope2.View"
         />
 
+    
     <browser:page
         name="EonView"
         for="*"
         class=".browser.PrizeEon"
         allowed_interface = ".browser.IPrizeEon"
         permission = "zope2.Public" />
+    
 
+    <!-- off
     <browser:page
         name="eonvoters"
         for="Products.eJournal.interfaces.IJournalPaper"
         class=".browser.PrizeEon"
         attribute="eonvoters"
         permission="cmf.ManagePortal" />
+    -->
 
 
 </configure>

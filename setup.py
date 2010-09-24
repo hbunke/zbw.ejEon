@@ -24,6 +24,7 @@ setup(name='zbw.ejEon',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'distribute'
       ],
       entry_points="""
       # -*- Entry points: -*-

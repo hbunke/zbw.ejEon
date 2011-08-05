@@ -110,7 +110,7 @@
         <td 
             tal:attributes="style python:eonview.hasVotedFor(paper)"
             >
-            <span tal:content="paper_view/getAuthorsForTitle">Hendrik Bunke</span><br />    
+            <span tal:content="paper_view/authors_as_string" /><br />    
             <a href="#"
             class="paperlist_title"
             tal:attributes="href paper/absolute_url"

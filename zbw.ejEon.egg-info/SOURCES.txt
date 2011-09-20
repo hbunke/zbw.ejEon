@@ -1,3 +1,5 @@
+.hgignore
+.hgtags
 README.txt
 setup.py
 docs/HISTORY.txt

@@ -62,9 +62,10 @@
                     -->
                 </tal:comment>
 
-        
+                <!--papers
+                     python:sorting_view.getSortedAndFilteredPapers('JournalPaper', sorted_by, 'Q'); -->
         <table class="eJournal_paper_list"
-            tal:define="papers python:sorting_view.getSortedAndFilteredPapers('JournalPaper', sorted_by, 'Q');
+            tal:define="papers eonview/get_nominees;
                         Batch python:modules['Products.CMFPlone'].Batch;
                         b_start python:request.get('b_start',0);">
 

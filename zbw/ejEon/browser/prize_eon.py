@@ -10,6 +10,7 @@ from Products.Five.browser import BrowserView
 
 from zbw.ejEon.interfaces import IVote
 from zope.app.annotation.interfaces import IAnnotations
+from Products.ATContentTypes.utils import DT2dt
 
 
 class IPrizeEon(Interface):
@@ -39,6 +40,11 @@ class IPrizeEon(Interface):
 
     def eonvoters():
         """lists voters for article
+        """
+
+    def get_nominees():
+        """
+        this whole package is an ugly hack :-(
         """
 
 
@@ -140,7 +146,28 @@ class PrizeEon(BrowserView):
 
         return text
 
+    
+    
+    def get_nominees(self):
+        """
+        """
+        ejtool = getToolByName(self.context, "ejournal_tool")
 
-           
+        catalog = getToolByName(self, "portal_catalog")
+        brains = catalog(portal_type="JournalPaper", sort_on="created", 
+                sort_order="descending")
+
+        nominees = []
+        for brain in brains:
+            obj = brain.getObject()
+            obj_date = DT2dt(obj.created())
+            if obj_date.year < 2011:
+                nominees.append(obj)
+
+        return ejtool.filterObjectsByJel(nominees, 'Q')
+        
+
+
+
 
  

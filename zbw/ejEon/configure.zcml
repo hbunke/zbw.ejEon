@@ -19,7 +19,7 @@
     -->
 
     <adapter
-        for="Products.eJournal.interfaces.IJournalPaper"
+        for="Products.eJournal.interfaces.content.IJournalPaper"
         provides=".interfaces.IVote"
         factory=".adapters.Vote" />
     
@@ -27,7 +27,7 @@
     <!-- OFF
     <browser:page
         name="voteEON"
-        for="Products.eJournal.interfaces.IJournalPaper"
+        for="Products.eJournal.interfaces.content.IJournalPaper"
         class=".browser.PrizeEon"
         attribute="voteEON"
         permission = "zope2.Public" />
@@ -53,7 +53,7 @@
     <!-- off
     <browser:page
         name="eonvoters"
-        for="Products.eJournal.interfaces.IJournalPaper"
+        for="Products.eJournal.interfaces.content.IJournalPaper"
         class=".browser.PrizeEon"
         attribute="eonvoters"
         permission="cmf.ManagePortal" />

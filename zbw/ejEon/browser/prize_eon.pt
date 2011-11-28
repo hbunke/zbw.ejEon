@@ -20,8 +20,7 @@
     
 
     <div
-        tal:define="sorting_view context/@@sortingView;
-                    eonview context/@@EonView;
+        tal:define="eonview context/@@EonView;
                     papers_per_page python:context.REQUEST.get('papers_per_page', 50);   
                     sorted_by context/REQUEST/sorted_by | nothing;
                     anonymous eonview/checkAnonymous;

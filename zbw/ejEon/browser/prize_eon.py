@@ -11,6 +11,7 @@ from Products.Five.browser import BrowserView
 from zbw.ejEon.interfaces import IVote
 from zope.app.annotation.interfaces import IAnnotations
 from Products.ATContentTypes.utils import DT2dt
+from zope.component import getMultiAdapter
 
 
 class IPrizeEon(Interface):
@@ -151,7 +152,8 @@ class PrizeEon(BrowserView):
     def get_nominees(self):
         """
         """
-        ejtool = getToolByName(self.context, "ejournal_tool")
+        #ejtool = getToolByName(self.context, "ejournal_tool")
+        paperlist = getMultiAdapter((self.context, self.context.REQUEST), name="paperlist")
 
         catalog = getToolByName(self, "portal_catalog")
         brains = catalog(portal_type="JournalPaper", sort_on="created", 
@@ -164,7 +166,8 @@ class PrizeEon(BrowserView):
             if obj_date.year < 2011:
                 nominees.append(obj)
 
-        return ejtool.filterObjectsByJel(nominees, 'Q')
+        return paperlist.filter_objects_by_jel(nominees, 'Q')
+        
         
 
 

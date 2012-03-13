@@ -22,19 +22,25 @@
         for="Products.eJournal.interfaces.content.IJournalPaper"
         provides=".interfaces.IVote"
         factory=".adapters.Vote" />
-    
 
-    <!-- OFF
+    <adapter
+        for="Products.eJournal.interfaces.content.IJournalPaper"
+        provides=".interfaces.IVoteO2"
+        factory=".adapters.VoteO2" />
+
+
+    <!-- off
     <browser:page
         name="voteEON"
         for="Products.eJournal.interfaces.content.IJournalPaper"
         class=".browser.PrizeEon"
         attribute="voteEON"
         permission = "zope2.Public" />
-    -->
+        -->
         
-        
-    <browser:page
+   
+   
+   <browser:page
         name="eon-prize-2010"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         template="browser/prize_eon.pt"
@@ -50,14 +56,47 @@
         permission = "zope2.Public" />
     
 
-    <!-- off
+    
     <browser:page
         name="eonvoters"
         for="Products.eJournal.interfaces.content.IJournalPaper"
         class=".browser.PrizeEon"
         attribute="eonvoters"
         permission="cmf.ManagePortal" />
-    -->
+
+
+    <!-- ################ O2 Prize ############################## -->
+   
+    <browser:page
+        name="o2-prize-2012"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".browser.prize_o2.View"
+        permission="zope2.View"
+        />
+
+   
+    <browser:page
+        name="o2voters"
+        for="Products.eJournal.interfaces.content.IJournalPaper"
+        class=".browser.prize_o2.Votes"
+        attribute="voters"
+        permission="cmf.ManagePortal" />
+
+    <browser:page
+        name="o2count"
+        for="Products.eJournal.interfaces.content.IJournalPaper"
+        class=".browser.prize_o2.Votes"
+        attribute="count"
+        permission="cmf.ManagePortal" />
+
+
+    <browser:page
+        name="voteO2"
+        for = "Products.eJournal.interfaces.content.IJournalPaper"
+        class = ".browser.prize_o2.Votes"
+        attribute = "vote"
+        permission = "zope2.View" />
+
 
 
 </configure>

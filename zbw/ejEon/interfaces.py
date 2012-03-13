@@ -24,3 +24,9 @@ class IVote(Interface):
         annotation in the user object
         """
 
+class IVoteO2(Interface):
+    """
+    Interface for storing O2 Prize votes
+    """
+
+   

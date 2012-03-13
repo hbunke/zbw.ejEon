@@ -1,0 +1,195 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master">
+
+
+<div metal:fill-slot="main">
+
+
+    <h1>
+      2012 O2 Prize
+    </h1>
+    
+    <tal:block tal:define="text view/getO2PrizeContent"
+    tal:content="structure text">
+    starttext, geliefert von einer existierenden seite
+    </tal:block>
+    
+    <h2>Nominees</h2>
+    <div
+        tal:define="
+                    papers_per_page python:context.REQUEST.get('papers_per_page', 50);   
+                    sorted_by context/REQUEST/sorted_by | nothing;
+                    anonymous view/checkAnonymous;
+                    voted view/hasVotedO2
+                    ">
+                    
+                    <tal:block tal:condition="anonymous">
+                    
+                        <form tal:define="pss modules/Products/PythonScripts/standard"
+                            style="float:none;"
+                            tal:attributes="action python:'%s/login_form?came_from=%s' %
+                                        (here.portal_url(),
+                                        pss.url_quote(request['URL']))">
+                            <input class="standalone"
+                                    style="margin-bottom: 1.25em;"
+                                    type="submit"
+                                    value="Log in to vote"
+                                    />
+                        </form>
+                    
+                    </tal:block>
+
+                     <tal:block tal:condition="view/hasVotedO2">
+                         <p class="portalMessage">You have already voted. The article you have voted
+                         for is marked.</p>
+                 </tal:block>
+                
+                
+                     
+                     <tal:block tal:condition="python:not voted and not anonymous">
+                     <p class="portalMessage">To vote for an article just click at the
+                         [X] link on it's right side.</p>
+                 
+                 </tal:block>
+
+                <!--papers
+                     python:sorting_view.getSortedAndFilteredPapers('JournalPaper', sorted_by, 'Q'); -->
+        <table class="eJournal_paper_list"
+            tal:define="papers view/get_nominees;
+                        Batch python:modules['Products.CMFPlone'].Batch;
+                        b_start python:request.get('b_start',0);">
+
+                   <tal:comment replace="nothing">
+                        kopiert vom paper_list macro.
+                    </tal:comment>
+            
+    <tal:block tal:define="batch python:Batch(papers, int(papers_per_page), int(b_start), orphan=1)">
+    <tr> 
+        <td tal:condition="not:papers"
+            colspan="6">
+        No documents yet.
+        </td>
+    </tr>  
+    <tr> 
+        <td tal:condition="papers"
+            colspan="5">
+            <div metal:use-macro="here/batch_macros/macros/navigation" />         
+        </td>
+    </tr>  
+    
+    
+    <tal:block tal:repeat="paper batch"> 
+
+
+    
+     <tr
+            tal:define="paper_view paper/@@paperView;
+                    state python:context.portal_workflow.getInfoFor(paper, 'review_state', '');
+                    type paper/Type;
+                    "> 
+
+        <td
+            class="paperlist_left nowrap">
+        <div class="paperlist_id" tal:content="paper/getId">2006-10-3</div>
+              
+        <img tal:condition="paper_view/recommended" src="favorite_icon.gif" alt="You've recommended this article" />
+        <img tal:attributes="src paper/getIcon;
+            alt paper/Type" />
+        
+        </td>
+        
+        <td 
+            tal:attributes="style python:view.hasVotedFor(paper)"
+            >
+            <span tal:content="paper_view/authors_as_string" /><br />    
+            <a href="#"
+            class="paperlist_title"
+            tal:attributes="href paper/absolute_url"
+            tal:content="paper/Title">
+            Title goes here.
+            </a>  
+            
+            
+            
+        <div class="paperlist_details">
+            <span tal:content="paper_view/getTitleDate">April, April</span> |             
+           
+            
+            <span>JEL:</span>              
+            <span tal:content="python: ', '.join(paper.getJel())">A1, B2</span>      
+           
+            
+            <!-- XXX -->
+            <tal:comment tal:replace="nothing">
+                
+            <tal:block 
+                  tal:define="citationsView paper/@@citations;
+                        repecHandle citationsView/hasHandle;
+                        count citationsView/count"
+
+                        tal:condition="python:repecHandle and count > 0"
+                        >
+
+                        | 
+                        <!--<a href="#" tal:attributes="href citationsView/link">-->
+                            <span tal:content="count">citations</span> citations (RePEc)<!--</a>-->
+
+                    </tal:block>
+                
+                </tal:comment>
+                
+
+            
+        </div>
+        
+        </td>
+
+
+        <td>
+            <tal:block
+                tal:define="url paper/absolute_url"
+                tal:condition="python:not anonymous and not voted"
+                >
+                <a tal:attributes="href string:$url/voteO2;
+                    title python:view.linktitle(paper)"
+                    href="#"
+
+                    style="font-weight:bold; font-size:14px; background-color:#FFCE7B; padding:2px; border:2px solid orange;">
+                    X</a>
+            </tal:block>
+
+            <tal:block
+                tal:define="url paper/absolute_url;
+                            count paper/@@o2count"
+                tal:condition="python:checkPermission('Manage portal', context)"
+                >
+                <br />
+                <a  tal:omit-tag="python:count < 1"
+                    tal:attributes="href string:$url/@@o2voters;
+                    title paper/@@o2voters">
+                (<span
+                    tal:content="count" />)</a>
+        </tal:block>
+
+        </td>
+
+    </tr>
+    </tal:block>
+    <tr> 
+        <td tal:condition="papers"
+            colspan="5">
+            <div metal:use-macro="here/batch_macros/macros/navigation" />         
+        </td> 
+    </tr>    
+</tal:block>
+           
+
+         
+      </table>
+    </div>
+
+</div>
+
+</html>
+

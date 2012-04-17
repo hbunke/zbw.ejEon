@@ -7,6 +7,9 @@ from zope.component import getMultiAdapter
 from Products.statusmessages.interfaces import IStatusMessage
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
+from operator import attrgetter
+from Products.AdvancedQuery import In, Eq, And, Or, Between
+
 
 
 class View(BrowserView):
@@ -78,15 +81,27 @@ class View(BrowserView):
         catalog = getToolByName(self, "portal_catalog")
         brains = catalog(portal_type="JournalPaper", sort_on="created", 
                 sort_order="descending")
-
+        
         nominees = []
+        single_articles = []
+        singles = ('2011-12', '2011-8', '2009-3', '2007-13', '2007-2')
         for brain in brains:
             obj = brain.getObject()
             obj_date = DT2dt(obj.created())
             if obj_date.year < 2012:
                 nominees.append(obj)
-
-        return paperlist.filter_objects_by_jel(nominees, 'I')
+        nominees = paperlist.filter_objects_by_jel(nominees, 'I')
+        for brain in brains:
+            if brain.id in singles:
+                obj = brain.getObject()
+                nominees.append(obj)
+        
+        #attrgetter needs string?!
+        #XXX Check this!
+        for paper in nominees:
+            paper.created_str = paper.created().strftime('%Y%m%d')
+            
+        return sorted(nominees, key=attrgetter('created_str'), reverse=True)
     
     
     def checkAnonymous(self):

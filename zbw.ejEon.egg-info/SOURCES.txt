@@ -19,3 +19,5 @@ zbw/ejEon/interfaces.py
 zbw/ejEon/browser/__init__.py
 zbw/ejEon/browser/prize_eon.pt
 zbw/ejEon/browser/prize_eon.py
+zbw/ejEon/browser/prize_o2.pt
+zbw/ejEon/browser/prize_o2.py

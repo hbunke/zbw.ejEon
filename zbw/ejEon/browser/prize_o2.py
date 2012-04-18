@@ -87,9 +87,9 @@ class View(BrowserView):
         singles = ('2011-12', '2011-8', '2009-3', '2007-13', '2007-2')
         for brain in brains:
             obj = brain.getObject()
-            obj_date = DT2dt(obj.created())
-            if obj_date.year < 2012:
-                nominees.append(obj)
+            #obj_date = DT2dt(obj.created())
+            #if obj_date.year < 2012:
+            nominees.append(obj)
         nominees = paperlist.filter_objects_by_jel(nominees, 'I')
         for brain in brains:
             if brain.id in singles:

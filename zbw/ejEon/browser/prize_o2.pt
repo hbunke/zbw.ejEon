@@ -24,7 +24,9 @@
                     voted view/hasVotedO2
                     ">
                     
-                    <tal:block tal:condition="anonymous">
+                    <tal:comment replace="nothing">
+                        <!-- OFF as of 2012-06-05 
+                        <tal:block tal:condition="anonymous">
                     
                         <form tal:define="pss modules/Products/PythonScripts/standard"
                             style="float:none;"
@@ -39,6 +41,8 @@
                         </form>
                     
                     </tal:block>
+                    -->
+                </tal:comment>
 
                      <tal:block tal:condition="view/hasVotedO2">
                          <p class="portalMessage">You have already voted. The article you have voted
@@ -46,15 +50,16 @@
                  </tal:block>
                 
                 
-                     
+                 <tal:comment replace="nothing">
+                 <!-- OFF as of 2012-06-05 voting finished 
                      <tal:block tal:condition="python:not voted and not anonymous">
                      <p class="portalMessage">To vote for an article just click at the
                          [X] link on it's right side.</p>
                  
                  </tal:block>
+                 -->
+                 </tal:comment>
 
-                <!--papers
-                     python:sorting_view.getSortedAndFilteredPapers('JournalPaper', sorted_by, 'Q'); -->
         <table class="eJournal_paper_list"
             tal:define="papers view/get_nominees;
                         Batch python:modules['Products.CMFPlone'].Batch;
@@ -120,34 +125,15 @@
             <span tal:content="python: ', '.join(paper.getJel())">A1, B2</span>      
            
             
-            <!-- XXX -->
-            <tal:comment tal:replace="nothing">
-                
-            <tal:block 
-                  tal:define="citationsView paper/@@citations;
-                        repecHandle citationsView/hasHandle;
-                        count citationsView/count"
-
-                        tal:condition="python:repecHandle and count > 0"
-                        >
-
-                        | 
-                        <!--<a href="#" tal:attributes="href citationsView/link">-->
-                            <span tal:content="count">citations</span> citations (RePEc)<!--</a>-->
-
-                    </tal:block>
-                
-                </tal:comment>
-                
-
-            
         </div>
         
         </td>
 
 
         <td>
-            <tal:block
+        <tal:comment replace="nothing">
+            <!--
+          <tal:block
                 tal:define="url paper/absolute_url"
                 tal:condition="python:not anonymous and not voted"
                 >
@@ -158,6 +144,8 @@
                     style="font-weight:bold; font-size:14px; background-color:#FFCE7B; padding:2px; border:2px solid orange;">
                     X</a>
             </tal:block>
+            -->
+        </tal:comment>
 
             <tal:block
                 tal:define="url paper/absolute_url;

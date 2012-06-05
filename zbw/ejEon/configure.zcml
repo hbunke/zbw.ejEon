@@ -89,14 +89,14 @@
         attribute="count"
         permission="cmf.ManagePortal" />
 
-
+    <!-- OFF as of 2012-06-05
     <browser:page
         name="voteO2"
         for = "Products.eJournal.interfaces.content.IJournalPaper"
         class = ".browser.prize_o2.Votes"
         attribute = "vote"
         permission = "zope2.View" />
-
+-->
 
 
 </configure>

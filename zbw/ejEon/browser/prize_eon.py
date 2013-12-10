@@ -9,7 +9,7 @@ from Products.CMFCore.WorkflowTool import WorkflowException
 from Products.Five.browser import BrowserView
 
 from zbw.ejEon.interfaces import IVote
-from zope.app.annotation.interfaces import IAnnotations
+from zope.annotation.interfaces import IAnnotations
 from Products.ATContentTypes.utils import DT2dt
 from zope.component import getMultiAdapter
 

@@ -7,17 +7,15 @@
     <five:registerPackage package="." initialize=".initialize" />
     -->
     
+    <!-- XXX deactivated as long Products.eJournal is not installed 
     <five:implements class="Products.eJournal.content.JournalPaper.JournalPaper"
         interface=".interfaces.IPrizable" />
-    
     <five:implements class="Products.ejMember.content.ejMember.ejMember"
         interface=".interfaces.IPrizable" />
+        -->
     
-    <!--
-    <five:implements class="Products.ejMember.content.ejMember.ejMember"
-        interface=".interfaces.IVote" />
-    -->
 
+    <!-- XXX deactivated until Products.eJournal is installed
     <adapter
         for="Products.eJournal.interfaces.content.IJournalPaper"
         provides=".interfaces.IVote"
@@ -27,8 +25,11 @@
         for="Products.eJournal.interfaces.content.IJournalPaper"
         provides=".interfaces.IVoteO2"
         factory=".adapters.VoteO2" />
+        -->
 
 
+    
+    
     <!-- off
     <browser:page
         name="voteEON"
@@ -56,14 +57,14 @@
         permission = "zope2.Public" />
     
 
-    
+    <!-- off until Products.eJournal installed
     <browser:page
         name="eonvoters"
         for="Products.eJournal.interfaces.content.IJournalPaper"
         class=".browser.PrizeEon"
         attribute="eonvoters"
         permission="cmf.ManagePortal" />
-
+    -->
 
     <!-- ################ O2 Prize ############################## -->
    
@@ -73,8 +74,9 @@
         class=".browser.prize_o2.View"
         permission="zope2.View"
         />
+    
 
-   
+    <!-- XXX off until Products.eJournal installed
     <browser:page
         name="o2voters"
         for="Products.eJournal.interfaces.content.IJournalPaper"
@@ -88,6 +90,7 @@
         class=".browser.prize_o2.Votes"
         attribute="count"
         permission="cmf.ManagePortal" />
+        -->
 
     <!-- OFF as of 2012-06-05
     <browser:page

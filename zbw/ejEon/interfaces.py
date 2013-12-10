@@ -2,7 +2,7 @@
 # Dr. Hendrik Bunke <h.bunke@zbw.eu>
 
 from zope.interface import Interface
-from zope.app.annotation.interfaces import IAttributeAnnotatable
+from zope.annotation.interfaces import IAttributeAnnotatable
 
 class IPrizable(IAttributeAnnotatable):
     """

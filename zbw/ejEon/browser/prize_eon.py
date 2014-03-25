@@ -152,7 +152,6 @@ class PrizeEon(BrowserView):
     def get_nominees(self):
         """
         """
-        #ejtool = getToolByName(self.context, "ejournal_tool")
         paperlist = getMultiAdapter((self.context, self.context.REQUEST), name="paperlist")
 
         catalog = getToolByName(self, "portal_catalog")
